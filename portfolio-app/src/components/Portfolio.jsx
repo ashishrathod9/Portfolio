@@ -156,7 +156,7 @@ const Portfolio = () => {
 
   // Alternative method if you want to open in new tab first
   const openCV = () => {
-    const driveUrl = 'https://drive.google.com/file/d/16zYBDGfjnBkcjpXO73vvgt4fVPDIqR3_/view';
+    const driveUrl = 'https://drive.google.com/file/d/1oXSelNFbEVnQDLBTd1emoWMZFYCBnYQ9/view?usp=drive_link';
     window.open(driveUrl, '_blank');
   };
 
