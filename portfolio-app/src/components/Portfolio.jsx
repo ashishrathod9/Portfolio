@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Sun, Moon } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Sun, Moon, Download } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Portfolio.css';
@@ -137,6 +137,29 @@ const Portfolio = () => {
     localStorage.setItem('theme', newTheme ? 'dark' : 'light');
   };
 
+  // CV Download Function
+  const downloadCV = () => {
+    // Method 1: Direct Google Drive download (requires public access)
+    // Convert your Google Drive link to direct download format
+    const fileId = '16zYBDGfjnBkcjpXO73vvgt4fVPDIqR3_';
+    const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    
+    // Create a temporary anchor element and trigger download
+    const link = document.createElement('a');
+    link.href = directDownloadUrl;
+    link.download = 'Ashish_Rathod_CV.pdf'; // Specify the filename
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Alternative method if you want to open in new tab first
+  const openCV = () => {
+    const driveUrl = 'https://drive.google.com/file/d/16zYBDGfjnBkcjpXO73vvgt4fVPDIqR3_/view';
+    window.open(driveUrl, '_blank');
+  };
+
   // Apply theme to document body
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark' : 'light';
@@ -269,7 +292,17 @@ const Portfolio = () => {
                 I've participated in hackathons and developed several full-stack projects using MERN stack, 
                 React.js, and Spring Boot.
               </p>
-              <button className="download-btn">
+              <button 
+                onClick={downloadCV} 
+                className="download-btn"
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  cursor: 'pointer'
+                }}
+              >
+                <Download size={18} />
                 Download CV
               </button>
             </div>
@@ -489,4 +522,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio; 
+export default Portfolio;
